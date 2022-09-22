@@ -7,12 +7,15 @@ namespace ReSharperPlugin.CodeInspections;
 
 // Types mentioned in this attribute are used for performance optimizations
 [ElementProblemAnalyzer(
-    typeof (IClassMemberDeclaration),
+    typeof (IMethodDeclaration),
     HighlightingTypes = new [] {typeof (SampleDeclarationHighlighting)})]
-public class SampleDeclarationProblemAnalyzer : ElementProblemAnalyzer<IClassMemberDeclaration>
+public class SampleDeclarationProblemAnalyzer : ElementProblemAnalyzer<IMethodDeclaration>
 {
-    protected override void Run(IClassMemberDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
+    protected override void Run(IMethodDeclaration element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
     {
+        if (element is IClassDeclaration)
+            return;
+
         if (element.NameIdentifier?.Name.All(char.IsUpper) ?? true)
             return;
 

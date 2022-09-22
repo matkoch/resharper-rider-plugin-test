@@ -1,0 +1,12 @@
+﻿// ReSharper disable UnusedMember.Global
+namespace ClassLibrary1;
+
+public class Class1
+{
+    public string |Foo|(0) = "string";
+    public string |Bar|(1) => "string";
+}
+
+---------------------------------------------------------
+(0): ReSharper Warning: (T) 'ReSharper SDK: SampleDeclarationHighlighting.Message' (E) 'ReSharper SDK: SampleDeclarationHighlighting.ErrorStripeToolTip'
+(1): ReSharper Warning: (T) 'ReSharper SDK: SampleDeclarationHighlighting.Message' (E) 'ReSharper SDK: SampleDeclarationHighlighting.ErrorStripeToolTip'
