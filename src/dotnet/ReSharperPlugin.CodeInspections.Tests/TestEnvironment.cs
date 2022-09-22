@@ -9,13 +9,14 @@ using NUnit.Framework;
 
 [assembly: Apartment(ApartmentState.STA)]
 
-namespace ReSharperPlugin.CodeInspections.Tests;
+namespace ReSharperPlugin.CodeInspections.Tests
+{
+    [ZoneDefinition]
+    public class CodeInspectionsTestEnvironmentZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>, IRequire<ICodeInspectionsZone> { }
 
-[ZoneDefinition]
-public class CodeInspectionsTestEnvironmentZone : ITestsEnvZone, IRequire<PsiFeatureTestZone>, IRequire<ICodeInspectionsZone> { }
+    [ZoneMarker]
+    public class ZoneMarker : IRequire<ICodeEditingZone>, IRequire<ILanguageCSharpZone>, IRequire<CodeInspectionsTestEnvironmentZone> { }
 
-[ZoneMarker]
-public class ZoneMarker : IRequire<ICodeEditingZone>, IRequire<ILanguageCSharpZone>, IRequire<CodeInspectionsTestEnvironmentZone> { }
-
-[SetUpFixture]
-public class CodeInspectionsTestsAssembly : ExtensionTestEnvironmentAssembly<CodeInspectionsTestEnvironmentZone> { }
+    [SetUpFixture]
+    public class CodeInspectionsTestsAssembly : ExtensionTestEnvironmentAssembly<CodeInspectionsTestEnvironmentZone> { }
+}
