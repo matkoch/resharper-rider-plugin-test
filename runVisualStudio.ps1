@@ -1,5 +1,5 @@
 Param(
-    $RootSuffix = "CodeInspections",
+    $RootSuffix = "CodeInspections2",
     $Version = "9999.0.0"
 )
 
